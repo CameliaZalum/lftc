@@ -1,0 +1,14 @@
+BEGIN
+variable n is 10~
+array of variable A~
+A.size is n~
+
+A.populateRandomly()~
+variable sum~
+
+loop x in A:
+    sum is sum add x~
+
+show sum~
+
+END

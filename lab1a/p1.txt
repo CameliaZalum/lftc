@@ -1,0 +1,9 @@
+BEGIN 
+
+variable a~
+variable b~
+variable difference~
+
+difference is a diff b~
+
+END

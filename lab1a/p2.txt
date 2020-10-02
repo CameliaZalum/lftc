@@ -1,0 +1,19 @@
+BEGIN 
+
+variable x~
+variable y~
+
+variable smaller~
+varibale difference~
+
+difference is x diff y~
+
+in case difference gt 0:
+    smaller is y~
+    otherwise:
+        smaller is x~
+
+show smaller~
+
+
+END
