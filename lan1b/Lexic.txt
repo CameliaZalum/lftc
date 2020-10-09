@@ -1,0 +1,25 @@
+Alphabet:
+    a. Upper case letters (A-Z) and lower case letters (a-z)
+    b. Decimal digits (0-9)
+
+Lexic:
+- special symbols:
+    - operators: add, diff, mul, div, gt, lt, eq, sgt, slt
+    - separators: {}, [], :, ~, 
+    - reserved words: variable, array of, BEGIN, END, show, read, in case, loop, in, is
+
+- identifiers:
+    IDENTIFIER = LETTER | LETTER{LETTER}
+    LETTER = "A" | "B" | ... | "Z" | "a" | "b" | ... | "z"
+
+- constants:
+    - integer:
+        CONSTANT = "+" NUMBER | "-" NUMBER | NUMBER
+        NUMBER = DIGIT{NUMBER}
+        DIGIT = "0" | "1" | ... | "9"
+    - character:
+        CHARACTER = "'" LETTER "'" | "'" DIGIT "'"
+    - string:
+        STRING = "'" CHAR {STRING} "''
+        CHAR = LETTER | DIGIT
+    
