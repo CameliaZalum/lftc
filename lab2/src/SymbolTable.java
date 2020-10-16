@@ -50,23 +50,18 @@ public class SymbolTable<Key, Value>  {
         return null;
     }
 
-    public void put(String key, Value val) {
+    public Value add(String key, Value val) {
         if (val == null) {
             remove(key);
-            return;
+            return null;
         }
 
         int i = hash(key);
-        try {
-            for (Node x = st.get(i); x != null; x = x.next) {
-                if (key.equals(x.key)) {
-                    x.val = val;
-                    return ;
-                }
-            }
-        } catch (Exception e) {
+        if (get(key) != null) {
+            return get(key);
+        } else {
             st.put(i, new Node(key, val, null));
-
+            return get (key);
         }
     }
     public void remove(String key) {
@@ -95,7 +90,7 @@ class Main {
             String data = myReader.nextLine();
             String[] dataTo = data.split(" ");
             for (int i = 0; i < dataTo.length; i++) {
-                stt.put(dataTo[i], index);
+                stt.add(dataTo[i], index);
                 index++;
             }
         }
