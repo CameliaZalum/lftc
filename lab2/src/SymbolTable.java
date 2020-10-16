@@ -42,15 +42,15 @@ public class SymbolTable<Key, Value>  {
         return value;
     }
 
-    public Value get(String key) {
+    public Node get(String key) {
         int i = hash(key);
         for (Node x = st.get(i); x != null; x = x.next) {
-            if (key.equals(x.key)) return (Value) x.val;
+            if (key.equals(x.key)) return x;
         }
         return null;
     }
 
-    public Value add(String key, Value val) {
+    public Node add(String key, Value val) {
         if (val == null) {
             remove(key);
             return null;
@@ -97,7 +97,7 @@ class Main {
         myReader.close();
         // print keys
         for (SymbolTable.Node s : stt.st.values())
-            System.out.println(s + " " + stt.get(s.key));
+            System.out.println(s );
 
     }
 }
