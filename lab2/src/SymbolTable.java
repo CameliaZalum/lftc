@@ -1,12 +1,9 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
-import static jdk.nashorn.internal.objects.ArrayBufferView.length;
 
 public class SymbolTable<Key, Value>  {
 
@@ -34,6 +31,12 @@ public class SymbolTable<Key, Value>  {
     }
 
     // Hash value = (sn-1 + 16(sn-2 + .. + 16(s1+16s0)))
+
+    /**
+     * Computes the hash value of a String
+     * @param key The string for the hash computation
+     * @return (sn-1 + 16(sn-2 + .. + 16(s1+16s0))) value computed for the string
+     */
     private int hash(String key) {
         int value = 0;
         for (int i = 0; i < key.length(); i++) {
@@ -42,6 +45,11 @@ public class SymbolTable<Key, Value>  {
         return value;
     }
 
+    /**
+     * Gets a node by its key
+     * @param key String to search for
+     * @return the Node (key and position in the tokens list) from the symbol table
+     */
     public Node get(String key) {
         int i = hash(key);
         for (Node x = st.get(i); x != null; x = x.next) {
@@ -50,6 +58,12 @@ public class SymbolTable<Key, Value>  {
         return null;
     }
 
+    /**
+     * Adds a value in the symbol table
+     * @param key String to be added
+     * @param val the position of the key in the tokens list
+     * @return a Node (key and position in the tokens list) that was added
+     */
     public Node add(String key, Value val) {
         if (val == null) {
             remove(key);
@@ -64,12 +78,23 @@ public class SymbolTable<Key, Value>  {
             return get (key);
         }
     }
+
+    /**
+     * Removes a key from the symbol table
+     * @param key String to be removed
+     */
     public void remove(String key) {
         int i = hash(key);
         st.put(i, remove(st.get(i), key));
 
     }
 
+    /**
+     * Removes a value from the symbol table
+     * @param x - the node that needs to be removed
+     * @param key - the key to be removed
+     * @return the value that was removed
+     */
     private Node remove(Node x, String key) {
         x.next = remove(x.next, key);
         return x;
