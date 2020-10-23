@@ -11,7 +11,7 @@ public class SymbolTable<Key, Value>  {
 
     public static class Node {
         public final String key;
-        private Object val;
+        public Object val;
         private Node next;
 
         public Node(String key, Object val, Node next)  {
@@ -100,29 +100,4 @@ public class SymbolTable<Key, Value>  {
         return x;
     }
 
-}
-
-class Main {
-
-    public static void main(String[] args) throws FileNotFoundException {
-        SymbolTable<String, Integer> stt = new SymbolTable<>();
-
-
-        File myObj = new File("C:\\Users\\camel\\Desktop\\faculta2\\lftc\\lab2\\src\\tokens.txt");
-        Scanner myReader = new Scanner(myObj);
-        int index = 0;
-        while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
-            String[] dataTo = data.split(" ");
-            for (int i = 0; i < dataTo.length; i++) {
-                stt.add(dataTo[i], index);
-                index++;
-            }
-        }
-        myReader.close();
-        // print keys
-        for (SymbolTable.Node s : stt.st.values())
-            System.out.println(s );
-
-    }
 }
