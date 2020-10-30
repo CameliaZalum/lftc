@@ -1,10 +1,2 @@
-nulllexically incorrect a
-lexically incorrect A
-lexically incorrect A
-lexically incorrect 10
-lexically incorrect a
 lexically incorrect 1nx
-lexically incorrect a
-lexically incorrect A
 lexically incorrect a_is
-lexically incorrect 100

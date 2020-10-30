@@ -1,16 +1,1 @@
-nulllexically incorrect x
-lexically incorrect y
-lexically incorrect smaller
-lexically incorrect varibale
-lexically incorrect difference
-lexically incorrect difference
-lexically incorrect x
-lexically incorrect y
-lexically incorrect case
-lexically incorrect difference
-lexically incorrect 0
-lexically incorrect smaller
-lexically incorrect y
-lexically incorrect smaller
-lexically incorrect x
-lexically incorrect smaller
+lexically correct

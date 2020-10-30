@@ -12,9 +12,9 @@ public class Scanner {
     SymbolTable<String, Integer> identifiers = new SymbolTable<>();
     SymbolTable<String, Integer> constants = new SymbolTable<>();
     List<String> tokens = new ArrayList<>();
-    Map<String, Integer> pif = new HashMap<>();
+    List<SymbolTable.Node> pif = new ArrayList<>();
     File outFile;
-    String output;
+    String output = "";
 
     /**
      * creates a scanner for the program
@@ -73,24 +73,24 @@ public class Scanner {
             int index = 0;
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                String[] dataTo = data.split(" |\n|\\[|\\]|\\{|\\}|\\:|\\~|\\}|\\.");
+                String[] dataTo = data.split(" |\n|~|:");
 
                 for (int i = 0; i < dataTo.length; i++) {
-//                    System.out.println(dataTo[i]);
-                    if (dataTo[i].matches("\b[0-9]+\b")) {
-                        SymbolTable.Node a = constants.add(dataTo[i], numberC);
-                        System.out.println("this is a constant" + dataTo[i]);
-                        pif.put(a.key, (Integer) a.val);
-                        numberC++;
-                    } else if (dataTo[i].matches("\b[^0-9][a-zA-Z+][0-9*]\b") && !tokens.contains(dataTo[i])) {
-                        SymbolTable.Node b = identifiers.add(dataTo[i], numberI);
-                        pif.put(b.key, (Integer) b.val);
-                        numberI++;
-                    } else if(tokens.contains(dataTo[i])) {
-                        pif.put(dataTo[i], 0);
-                    } else if(!tokens.contains(dataTo[i])){
-                       output += "lexically incorrect " + dataTo[i] + "\n";
-                       ok = false;
+                    if (tokens.contains(dataTo[i])){
+                        pif.add(new SymbolTable.Node(dataTo[i], 0, null ));
+                    } else if (!tokens.contains(dataTo[i])) {
+                        if (dataTo[i].matches("[0-9]+")) {
+                            SymbolTable.Node a = constants.add(dataTo[i], numberC);
+                            pif.add(new SymbolTable.Node("0", (Integer) a.val, null));
+                            numberC++;
+                        } else if (dataTo[i].matches("[a-zA-Z]+")) {
+                            SymbolTable.Node b = identifiers.add(dataTo[i], numberI);
+                            pif.add(new SymbolTable.Node ("1", (Integer) b.val, null ));
+                            numberI++;
+                        } else if (!tokens.contains(dataTo[i])) {
+                            output += "lexically incorrect " + dataTo[i] + "\n";
+                            ok = false;
+                        }
                     }
                 }
             }
@@ -101,6 +101,9 @@ public class Scanner {
             writer.write(output);
             System.out.println(output);
             System.out.println(outFile.getAbsolutePath());
+            System.out.println(identifiers);
+            System.out.println(constants);
+            System.out.println(pif);
             writer.close();
         }catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();

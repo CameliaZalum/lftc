@@ -1,9 +1,1 @@
-nulllexically incorrect n
-lexically incorrect 10
-lexically incorrect A
-lexically incorrect A
-lexically incorrect n
-lexically incorrect A
-lexically incorrect x
-lexically incorrect A
-lexically incorrect x
+lexically correct

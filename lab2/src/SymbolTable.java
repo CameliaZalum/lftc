@@ -22,7 +22,7 @@ public class SymbolTable<Key, Value>  {
 
         @Override
         public String toString() {
-            return key + " "  + val + " ; ";
+            return key + " "  + val + " ";
         }
     }
 
@@ -100,4 +100,11 @@ public class SymbolTable<Key, Value>  {
         return x;
     }
 
+    public String toString() {
+        String out = "";
+        for (Integer n: st.keySet()) {
+            out += st.get(n) + ", ";
+        }
+        return out;
+    }
 }
