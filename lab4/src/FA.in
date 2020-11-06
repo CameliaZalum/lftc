@@ -1,0 +1,5 @@
+p, q
+a, b
+d(p, a) = p; d(p, b) = q; d(q, b) = q
+p
+q
