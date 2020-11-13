@@ -36,4 +36,7 @@ public class Transition {
     public void addTransition(String state, String symbol, String result){
         transitions.put(new Pair(state, symbol), result);
     }
+    public String getTransitionByPair(String state, String symbol){
+        return transitions.get(transitions.keySet().stream().filter(a-> (a.symbol.equals(symbol) && a.state.equals(state))).toArray()[0]);
+    }
 }
