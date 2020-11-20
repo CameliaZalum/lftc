@@ -1,10 +1,25 @@
 
+BEGIN
+END
+
+.
 real
 int
+string
+variable
+array
+of
+char
 otherwise
 in case
-char
 loop
+in
+show
+read
+size
+sum
+populateRandomly()
+
 lt
 slt
 gt
@@ -14,12 +29,15 @@ add
 diff
 mul
 div
-variable 
-array of
-in
-string
-show
-read
 is
+
+[
+]
+{
+}
+:
+~
+}
+
 0 
 1  
