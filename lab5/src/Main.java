@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    static String menu = "1. show set terminals;\n2.show set nonterminals\n3.show productions\n4.show production of given terminal";
+    static String menu = "1. show set terminals;\n2.show set nonterminals\n3.show productions\n4.show production of given terminal\n5.algorithm";
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, InterruptedException {
         Grammar grammar = new Grammar();
         File fsFile = new File("C:\\Users\\camel\\Desktop\\faculta2\\lftc\\lab5\\src\\g1.txt");
         Scanner scanner = new Scanner(fsFile);
@@ -51,7 +51,13 @@ public class Main {
                 String terminal = scanner.nextLine();
                 System.out.println(grammar.productions.get(terminal));
             }
+            if (scan.equals("5")){
+                System.out.println("type the string");
+                String test = scanner.nextLine();
+                RecursiveDescendentAlgorithm rda = new RecursiveDescendentAlgorithm(test, grammar);
 
+                System.out.println(rda.getResult());
+            }
             if(scan == "0"){
                 System.exit(0);
             }
