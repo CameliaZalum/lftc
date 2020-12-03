@@ -119,7 +119,7 @@ public class RecursiveDescendent {
     public void success(Operation a){
         List<String> last = new ArrayList<>();
         last.add("e");
-        Operation op = new Operation("f", inputSequence.size() + 1, a.inputStack, last);
+        Operation op = new Operation("f", a.position, a.inputStack, last);
         operationList.add(new Operations("success", op));
     }
 }

@@ -45,15 +45,15 @@ public class RecursiveDescendentAlgorithm {
                 System.out.println(a.operation);
             }
             System.out.println("---------------------------------------------------------------");
-            if (position >= n) {
-                state = "e";
-            }
+//            if (position >= n) {
+//                state = "e";
+//            }
             if(inputStack.get(0).equals("e"))
             {
                 inputStack.remove(0);
             }
             if(state.equals("q")){
-                if(workingStack.size() == 0 && position == n+1){
+                if(inputStack.size() == 0 && position == n+1){
                     rd.success(new Operation(state, position, workingStack, inputStack));
                     renewParameters();
                 }
@@ -70,16 +70,18 @@ public class RecursiveDescendentAlgorithm {
                         rd.expand(new Operation(state, position, workingStack, inputStack));
                         renewParameters();
                     }else {
-                        if(inputStack.get(0).equals(testList.get(position-1))){
+                        try {
+                            if (inputStack.get(0).equals(testList.get(position - 1))) {
 //                            position ++;
 //                            inputStack.add("a");
 //                            workingStack.remove(0); // maybe, or "a"
-                            rd.advance(new Operation(state, position, workingStack, inputStack));
+                                rd.advance(new Operation(state, position, workingStack, inputStack));
 
-                            renewParameters();
-                        }else {
-                            state = "b";
-                        }
+                                renewParameters();
+                            } else {
+                                state = "b";
+                            }
+                        }catch (Exception e){ state = "b";}
                     }
                 }
             }else {
