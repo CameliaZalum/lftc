@@ -37,12 +37,10 @@ public class Grammar {
         try {
             if (this.productions.get(prod) != null){
                 this.productions.get(prod).add(p);
-//                System.out.println(p + " was added");
             } else {
                 List<Production> newProduction = new ArrayList<>();
                 newProduction.add(p);
                 this.productions.put(prod, newProduction);
-//                System.out.println(p + " created new Production for " + prod);
             }
         } catch (Exception e) {
             System.out.println("addProduction failed");

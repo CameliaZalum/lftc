@@ -1,14 +1,16 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     static String menu = "1. show set terminals;\n2.show set nonterminals\n3.show productions\n4.show production of given terminal\n5.algorithm";
 
-    public static void main(String[] args) throws FileNotFoundException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         Grammar grammar = new Grammar();
-        File fsFile = new File("C:\\Users\\camel\\Desktop\\faculta2\\lftc\\lab5\\src\\g1.txt");
+        File fsFile = new File("C:\\Users\\camel\\Desktop\\faculta2\\lftc\\lab5\\src\\g2.txt");
         Scanner scanner = new Scanner(fsFile);
 
         String terminals[] = scanner.nextLine().split(", |\n");
@@ -29,7 +31,6 @@ public class Main {
             }
         }
         grammar.setStartingSymbol(scanner.nextLine());
-//        System.out.println(grammar);
 
         scanner.close();
 
@@ -52,11 +53,18 @@ public class Main {
                 System.out.println(grammar.productions.get(terminal));
             }
             if (scan.equals("5")){
-                System.out.println("type the string");
-                String test = scanner.nextLine();
-                RecursiveDescendentAlgorithm rda = new RecursiveDescendentAlgorithm(test, grammar);
-
-                System.out.println(rda.getResult());
+                File seqFile = new File("C:\\Users\\camel\\Desktop\\faculta2\\lftc\\lab5\\src\\seq2.txt");
+                Scanner scannerSeq = new Scanner(seqFile);
+                FileWriter myWriter = new FileWriter("out2.txt");
+                while (scannerSeq.hasNextLine()) {
+                    String test = scannerSeq.nextLine();
+                    RecursiveDescendentAlgorithm rda = new RecursiveDescendentAlgorithm(test, grammar);
+                    System.out.println(rda.getResult());
+                    System.out.println(rda.workingStack);
+                    myWriter.append(rda.getResult() + "\n" + rda.workingStack + "\n");
+                }
+                myWriter.close();
+                scannerSeq.close();
             }
             if(scan == "0"){
                 System.exit(0);

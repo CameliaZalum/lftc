@@ -103,6 +103,7 @@ public class Scanner {
             System.out.println(outFile.getAbsolutePath());
             System.out.println(identifiers);
             System.out.println(constants);
+            System.out.println("pif");
             System.out.println(pif);
             writer.close();
         }catch (FileNotFoundException fileNotFoundException) {
